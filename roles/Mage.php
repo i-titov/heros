@@ -34,7 +34,7 @@ class Mage extends Hero
     }
     public function warCry():string
     {
-        return parent::warCry(). ' with ' . $this->spell_name . " his damage is: " . $this->s_strength;
+        return $this->warCry(). ' with ' . $this->spell_name . " his damage is: " . $this->s_strength;
     }
 
     public function canAttack():bool{
