@@ -29,7 +29,7 @@ class Warrior extends Hero
 
     public function warCry():string
     {
-       return parent::warCry(). ' with ' . $this->w_name . " his damage is: " . $this->w_strength;
+       return $this->warCry(). ' with ' . $this->w_name . " his damage is: " . $this->w_strength;
     }
 
     public function canAttack():bool{
