@@ -11,8 +11,10 @@ class Fight
     }
 
     public function fight(){
-    var_dump($this->opponent->attack());
-
+        while ($this->hero->canAttack() && $this->opponent->canAttack()):
+            $this->opponent->setDamage($this->hero->attack());
+            $this->hero->setDamage($this->opponent->attack());
+        endwhile;
     }
 
 }

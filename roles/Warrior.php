@@ -21,6 +21,14 @@ class Warrior extends Hero
         $this->w_health = $this->weapon[$random]["w_health"];
 
     }
+    public function attack():int{
+        if ($this->attackMiss()){
+            echo " =====Miss===== ";
+            return 0;
+        }
+        echo $this->warCry() . "<br>";
+        return $this->getDamage();
+    }
     public function display()
     {
         return parent::display() ." Strength: ". $this->strenght . " Weapon: " . $this->w_name
@@ -29,7 +37,7 @@ class Warrior extends Hero
 
     public function warCry():string
     {
-       return $this->warCry(). ' with ' . $this->w_name . " his damage is: " . $this->w_strength;
+       return parent::warCry(). ' with ' . $this->w_name . " his damage is: " . $this->w_strength;
     }
 
     public function canAttack():bool{

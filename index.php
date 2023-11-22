@@ -12,7 +12,6 @@
 require_once ('roles/Warrior.php');
 require_once ('roles/Mage.php');
 require_once ('roles/Fight.php');
-ini_set('max_execution_time', '300');
 $warrior = new Warrior('War',100,100);
 
 $mage = new Mage('Mage',100,1000);

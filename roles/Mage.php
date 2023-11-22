@@ -28,13 +28,16 @@ class Mage extends Hero
     }
 
     public function attack():int{
-        if (!$this->canAttack() && $this->attackMiss()){return 0;}
+        if ($this->attackMiss()){
+            echo " =====Miss===== ";
+            return 0;
+        }
         echo $this->warCry() . "<br>";
         return $this->getDamage();
     }
     public function warCry():string
     {
-        return $this->warCry(). ' with ' . $this->spell_name . " his damage is: " . $this->s_strength;
+        return parent::warCry(). ' with ' . $this->spell_name . " his damage is: " . $this->s_strength;
     }
 
     public function canAttack():bool{
