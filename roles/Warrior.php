@@ -7,9 +7,11 @@ class Warrior extends Hero
     private int $strenght;
     private int $w_health;
 
-    private array $weapon = [["w_name"=>"Sword","w_strength"=> 10,"w_health"=> 100],
+    private array $weapon = [
+        ["w_name"=>"Sword","w_strength"=> 10,"w_health"=> 100],
         ["w_name"=>"Katana","w_strength"=> 8, "w_health"=> 80],
-        ["w_name"=>"Sabre","w_strength"=> 15, "w_health"=> 75]];
+        ["w_name"=>"Sabre","w_strength"=> 15, "w_health"=> 75]
+    ];
 
     public function __construct(string $name, int $health, int $strenght)
     {
@@ -23,7 +25,7 @@ class Warrior extends Hero
     }
     public function attack():int{
         if ($this->attackMiss()){
-            echo " =====Miss===== ";
+            $this->showMiss();
             return 0;
         }
         echo $this->warCry() . "<br>";
@@ -41,12 +43,15 @@ class Warrior extends Hero
     }
 
     public function canAttack():bool{
-        return $this->w_health >= $this->w_strength && $this->getHealth() > 1;
+        return parent::canAttack() && $this->w_health >= $this->w_strength;
     }
     public function getDamage():int
     {
         $this->w_health -= round($this->strenght* 0.025);
         return $this->w_strength;
+    }
+    public function showMiss(){
+        echo " =====Miss===== " . " from " . parent::displayName() . "<br>";
     }
 
 }

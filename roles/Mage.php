@@ -1,4 +1,5 @@
 <?php
+require_once ('Hero.php');
 
 class Mage extends Hero
 {
@@ -7,9 +8,11 @@ class Mage extends Hero
     private int $mana_cost;
     private int $mana;
 
-    private array $weapon = [["spell_name"=>"Fire Ball","s_strength"=> 15,"mana_cost"=> 100],
+    private array $weapon = [
+        ["spell_name"=>"Fire Ball","s_strength"=> 15,"mana_cost"=> 100],
         ["spell_name"=>"Frost Ball","s_strength"=> 10, "mana_cost"=> 80],
-        ["spell_name"=>"Dark Ball","s_strength"=> 8, "mana_cost"=> 75]];
+        ["spell_name"=>"Dark Ball","s_strength"=> 8, "mana_cost"=> 75]
+    ];
 
     public function __construct(string $name, int $health, int $mana)
     {
@@ -29,7 +32,7 @@ class Mage extends Hero
 
     public function attack():int{
         if ($this->attackMiss()){
-            echo " =====Miss===== ";
+            $this->showMiss();
             return 0;
         }
         echo $this->warCry() . "<br>";
@@ -41,12 +44,15 @@ class Mage extends Hero
     }
 
     public function canAttack():bool{
-        return $this->mana >= $this->mana_cost && $this->getHealth() > 1;
+        return parent::canAttack() && $this->mana >= $this->mana_cost;
     }
 
     public function getDamage():int
     {
         $this->mana -= $this->mana_cost;
         return $this->s_strength;
+    }
+    public function showMiss(){
+        echo " =====Miss===== " . " from " . parent::displayName() . "<br>";
     }
 }
