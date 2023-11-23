@@ -30,6 +30,11 @@ class Fight
             echo "::::::::::::::::: Round: $round ::::::::::::::::: <br>";
             $round++;
         endwhile;
-        echo $firstPlayer->getHealth() <= 0 ? $firstPlayer->displayName(). " is lost " . "<br>" : $secondPlayer->displayName(). " is lost " . "<br>";
+        $looser = $firstPlayer->getHealth() <= 0 ? $firstPlayer->displayName() :  $secondPlayer->displayName();
+        $winner = $firstPlayer->getHealth() <= 0 ? $firstPlayer->displayName() :  $secondPlayer->displayName();
+        echo $looser . " is lost " . "<br>";
+    }
+    public function saveResult($result){
+
     }
 }

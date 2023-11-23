@@ -8,6 +8,8 @@ class Mage extends Hero
     private int $mana_cost;
     private int $mana;
 
+    private int $level = 0;
+
     private array $weapon = [
         ["spell_name"=>"Fire Ball","s_strength"=> 15,"mana_cost"=> 100],
         ["spell_name"=>"Frost Ball","s_strength"=> 10, "mana_cost"=> 80],
@@ -54,5 +56,8 @@ class Mage extends Hero
     }
     public function showMiss(){
         echo " =====Miss===== " . " from " . parent::displayName() . "<br>";
+    }
+    public function levelUp(){
+        $this->level++;
     }
 }
