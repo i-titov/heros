@@ -1,11 +1,12 @@
 <?php
 require_once ("Hero.php");
-class Warrior extends Hero
+final class Warrior extends Hero
 {
     private string $w_name;
     private int $w_strength;
     private int $strenght;
     private int $w_health;
+
 
     private array $weapon = [
         ["w_name"=>"Sword","w_strength"=> 10,"w_health"=> 100],
@@ -13,15 +14,19 @@ class Warrior extends Hero
         ["w_name"=>"Sabre","w_strength"=> 15, "w_health"=> 75]
     ];
 
-    public function __construct(string $name, int $health, int $strenght)
+    public function __construct(string $name,int $level)
     {
-        parent::__construct($name, $health);
+        parent::__construct($name,$level);
         $random = rand(0,2);
-        $this->strenght = $strenght;
+        $this->strenght = 100;
         $this->w_name = $this->weapon[$random]["w_name"];
         $this->w_strength = $this->weapon[$random]["w_strength"];
         $this->w_health = $this->weapon[$random]["w_health"];
 
+    }
+    public function displayName()
+    {
+        return parent::displayName();
     }
     public function attack():int{
         if ($this->attackMiss()){
@@ -47,11 +52,10 @@ class Warrior extends Hero
     }
     public function getDamage():int
     {
-        $this->w_health -= round($this->strenght* 0.025);
+        $this->w_health -= round($this->strenght* (0.025 * $this->level));
         return $this->w_strength;
     }
     public function showMiss(){
-        echo " =====Miss===== " . " from " . parent::displayName() . "<br>";
+        echo " ===========Miss=========== " . " from " . parent::displayName() . "<br>";
     }
-
 }
